@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link Shortener</title>
+
+  <script src="./script/main.js"></script>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="from-blue-500 to-green-500 bg-gradient-to-r">
+  <main class="max-w-lg mx-auto flex h-screen">
+    <section class="my-auto bg-white w-full px-7 py-5 rounded-xl shadow-2xl space-y-3">
+
+      <form class="grid grid-cols-5 space-x-3" action="" method="post" name="shorten">
+        <input class="col-span-4 border rounded-md shadow py-1 px-3
+                      focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2
+                      focus:outline-none focus:ring" type="url" name="url" id="shorten_url">
+        <input class="col-span-1 rounded-md bg-blue-500 text-white px-3 
+                      hover:bg-blue-400 hover:-translate-y-0.5 transform transition
+                      active:bg-blue-700 active:translate-x-0.5 active:translate-y-0.5
+                      focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2
+                      focus:outline-none focus:ring" type="button" value="Shorten" onclick="return shortener()">
+      </form>
+
+      <div class="grid grid-cols-5 space-x-3">
+        <input class="col-span-4 border rounded-md shadow py-1 px-3
+                      focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2
+                      focus:outline-none focus:ring" id="shortUrl" value="">
+        <button class="col-span-1 rounded-md bg-blue-500 text-white px-3 
+                       hover:bg-blue-400 hover:-translate-y-0.5 transform transition
+                       active:bg-blue-700 active:translate-x-0.5 active:translate-y-0.5
+                       focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2
+                       focus:outline-none focus:ring" id="btn" data-clipboard-target="#shortUrl">
+          <span>Copy</span>
+        </button>
+      </div>
+
+      <div class="bg-blue-100 rounded-md text-blue-900 shadow px-3 py-1 font-bold max-w-min" id="succeed" hidden>Copied!</div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+      <script>
+        var btn = document.getElementById('btn');
+        var clipboard = new ClipboardJS(btn);
+
+        clipboard.on('success', function (e) {
+          console.log(e);
+          document.getElementById("succeed").hidden = false;
+        });
+
+        clipboard.on('error', function (e) {
+          console.log(e);
+        });
+      </script>
+    </section>
+  </main>
+</body>
+
+</html>
